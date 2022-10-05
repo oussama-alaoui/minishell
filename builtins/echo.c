@@ -6,73 +6,53 @@
 /*   By: oalaoui- <oalaoui-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 22:06:07 by oalaoui-          #+#    #+#             */
-/*   Updated: 2022/10/04 22:06:08 by oalaoui-         ###   ########.fr       */
+/*   Updated: 2022/10/05 19:23:04 by oalaoui-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	check_args(char *str)
+int skip_arg(char *str)
 {
 	int	y;
-	int	n_option;
+	int	status;
 
-	y = 1;
-	n_option = 0;
+	y = 0;
+	status = 0;
 	if (str[0] == '-')
 	{
-		while (str[y])
+		while (str[++y])
 		{
 			if (str[y] != 'n')
-			{
-				n_option = 0;
-				return (n_option);
-			}
+				return (status = 0, status);
 			else
-			{
-				n_option = 1;
-			}
-			y++;
+				status = 1;
 		}
 	}
-	return (n_option);
-}
-
-int	pass_n(char **var)
-{
-	int	i;
-
-	i = 0;
-	while (var[i] && check_args(var[i]) == 1)
-		i++;
-	return (i);
+	return (status);
 }
 
 void	ft_echo(char **var)
 {
-	int	i;
 	int	y;
-	int	n_option;
+	int	status;
 
-	i = -1;
 	y = -1;
-	n_option = 0;
-	if (var && var[0])
-	{
-		while (var[++y])
-			n_option = check_args(var[0]);
-		if (n_option == 1)
-			i = pass_n(var) - 1;
-		while (var[++i])
-		{
-			ft_putstr_fd(1, var[i]);
-			if (var[i + 1] != NULL)
+	status = 0;
+    if (var && var[0])
+    {
+		while (skip_arg(var[++y]))
+			status = skip_arg(var[y]);
+        while (var[y])
+        {
+            ft_putstr_fd(2, var[y]);
+            if (var[y + 1] != NULL)
 				ft_putstr_fd(1, " ");
-		}
-		if (n_option == 0)
+			y++;
+        }
+		if (status == 0)
 			ft_putstr_fd(1, "\n");
-	}
-	else
-		ft_putstr_fd(1, "\n");
-	create_list("?", "0");
+    }
+    else
+        ft_putstr_fd(1, "\n");
 }

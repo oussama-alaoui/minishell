@@ -6,7 +6,7 @@
 /*   By: oalaoui- <oalaoui-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:15:33 by oakoudad          #+#    #+#             */
-/*   Updated: 2022/10/04 22:04:35 by oalaoui-         ###   ########.fr       */
+/*   Updated: 2022/10/05 21:20:55 by oalaoui-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int			is_valid_key(char c);
 char		*get_env_var(char *key);
 char		*get_cmd_from_path(char *cmd);
 char		**ft_split(char *s, char c);
-void		exec_cmd_sys(char *cmd, char **env, t_list *lst);
+int			exec_cmd_sys(char *cmd, char **env, t_list *lst);
 char		**prepare_env(void);
 char		*ft_itoa(int n);
 char		*join_env_value(char *value, char *key);

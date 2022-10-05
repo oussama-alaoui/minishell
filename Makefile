@@ -31,14 +31,14 @@ SRC = 		minishell.c\
 		./src/export_error.c\
 		./src/check_key_unset.c\
 		./src/set_status.c\
-		./built_in/echo.c\
-		./built_in/lst.c\
-		./built_in/export.c\
-		./built_in/env.c\
-		./built_in/cd.c\
-		./built_in/unset.c\
-		./built_in/exit.c\
-		./built_in/pwd.c\
+		./builtins/echo.c\
+		./builtins/lst.c\
+		./builtins/export.c\
+		./builtins/env.c\
+		./builtins/cd.c\
+		./builtins/unset.c\
+		./builtins/exit.c\
+		./builtins/pwd.c\
 		./parsing/parsing.c\
 		./parsing/copy_var.c\
 		./parsing/fileopen.c\

@@ -1,42 +1,68 @@
-#include "../builtins.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   env.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oalaoui- <oalaoui-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/04 21:10:44 by oalaoui-          #+#    #+#             */
+/*   Updated: 2022/10/05 19:28:35 by oalaoui-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../minishell.h"
 
 void print_env()
 {
-    t_list_env *tmp;
+	t_list_env *tmp;
 
-    tmp = g_info.env_lst;
-    while (tmp)
-    {
-        if (tmp->status == 1)
-            if(tmp->value != NULL)
-                printf("%s=\"%s\"\n",tmp->key, tmp->value);
-        tmp = tmp->next;
-    }
-    
+	tmp = g_info.env_lst;
+	while (tmp)
+	{
+		if (tmp->status == 1)
+			if(tmp->value != NULL)
+			{
+				ft_putstr_fd(1, tmp->key);
+				ft_putstr_fd(1, "=");
+				ft_putstr_fd(1, tmp->value);
+				ft_putstr_fd(1, "\n");
+			}
+		tmp = tmp->next;
+	}
+	
 }
 
 void print_export_env()
 {
-    t_list_env *tmp;
+	t_list_env *tmp;
 
-    tmp = g_info.env_lst;
-    while (tmp)
-    {
-        if (tmp->status == 1)
-        {
-            if(tmp->value != NULL)
-                printf("declare -x %s=\"%s\"\n",tmp->key, tmp->value);
-            else
-                printf("declare -x %s\n",tmp->key);
-        }
-        tmp = tmp->next;
-    }
+	tmp = g_info.env_lst;
+	while (tmp)
+	{
+		if (tmp->status == 1)
+		{
+			if(tmp->value != NULL)
+			{
+				ft_putstr_fd(1, "declare -x ");
+				ft_putstr_fd(1, tmp->key);
+				ft_putstr_fd(1, "=");
+				ft_putstr_fd(1, tmp->value);
+				ft_putstr_fd(1, "\n");
+			}
+			else
+			{
+				ft_putstr_fd(1, "declare -x ");
+				ft_putstr_fd(1, tmp->key);
+			}
+		}
+		tmp = tmp->next;
+	}
 }
 
-void ft_env (int type)
+void ft_env(int type)
 {
-    if (type == 1)
-        return (print_env());
-    else
-        return (print_export_env());
+	if (type == 1)
+		return (print_env());
+	else
+		return (print_export_env());
 }

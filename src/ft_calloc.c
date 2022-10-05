@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oakoudad <oakoudad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oalaoui- <oalaoui-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 21:26:26 by oakoudad          #+#    #+#             */
-/*   Updated: 2022/09/14 21:31:22 by oakoudad         ###   ########.fr       */
+/*   Updated: 2022/10/05 23:23:35 by oalaoui-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	*ft_calloc(size_t size)
 	p = malloc(size);
 	if (!p)
 	{
+		printf("no space lift\n");
 		exit(30);
 		return (0);
 	}

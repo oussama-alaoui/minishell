@@ -6,7 +6,7 @@
 /*   By: oalaoui- <oalaoui-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 23:33:08 by eelmoham          #+#    #+#             */
-/*   Updated: 2022/10/04 22:03:32 by oalaoui-         ###   ########.fr       */
+/*   Updated: 2022/10/05 20:33:14 by oalaoui-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,12 @@ void	exc_built_ins(t_list *lst)
 	if (ft_strcmp(lst->cmd, "echo") == 0)
 		ft_echo(lst->args + 1);
 	else if (ft_strcmp(lst->cmd, "export") == 0)
-		check_export_exec(lst);
+		ft_export(lst->args + 1);
 	else if (ft_strcmp(lst->cmd, "env") == 0)
 		ft_env(1);
 	else if (ft_strcmp(lst->cmd, "cd") == 0)
 	{
-		if (lst->next)
-			return ;
-		else if (lst->args && lst->args[0] && lst->args[1])
+		if (lst->args && lst->args[0] && lst->args[1])
 			ft_cd(lst->args[1]);
 		else
 			ft_cd(NULL);

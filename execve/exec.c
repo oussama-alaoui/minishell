@@ -6,7 +6,7 @@
 /*   By: oalaoui- <oalaoui-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 23:32:24 by eelmoham          #+#    #+#             */
-/*   Updated: 2022/10/04 21:28:47 by oalaoui-         ###   ########.fr       */
+/*   Updated: 2022/10/05 23:45:27 by oalaoui-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ int	wait_and_error(int fd, t_list	*head)
 	while (z < g_info.count_pipes && g_info.count_pipes)
 	{
 		wait(&status);
-		if (WIFEXITED(status) && !is_built_in(head) && z == 0)
+		if (WIFEXITED(status) && z == 0)
 		{
 			g_info.errorstatus = WEXITSTATUS(status);
 			if (head->error == 0)
 				change_status(g_info.errorstatus);
 		}
-		if (WIFSIGNALED(status) && !is_built_in(head) && z == 0)
+		if (WIFSIGNALED(status) && z == 0)
 		{
 			g_info.errorstatus = WTERMSIG(status) + 128;
 			if (g_info.errorstatus == 131)
@@ -41,20 +41,21 @@ int	wait_and_error(int fd, t_list	*head)
 	return (1);
 }
 
-void	exec_cmd(t_list *lst, t_list *head, t_var var, int intfd)
+int	exec_cmd(t_list *lst, t_list *head, t_var var, int intfd)
 {
-	if (!is_built_in(head))
+	if (g_info.count_pipes > 1 || !is_built_in(lst))
+	{
+		var.pid = fork();
+	}
+	if (var.pid == -1)
+	{
+		//g_info.sig = 1;
+		perror("");
+		return (0);
+	}
+	else if (var.pid == 0)
 	{
 		g_info.sig = 0;
-		var.pid = fork();
-		if (var.pid == -1)
-		{
-			printf("fork not protected\n");
-			return;
-		}
-	}
-	if (var.pid == 0)
-	{
 		dup_fd(intfd, var.fd, lst, head);
 		if (is_built_in(head) == 0)
 		{
@@ -67,14 +68,16 @@ void	exec_cmd(t_list *lst, t_list *head, t_var var, int intfd)
 		{
 			exc_built_ins(head);
 			restoreio(var.io_fd);
+			if (g_info.count_pipes > 1)
+				exit(0);
 		}
 	}
+	return (1);
 }
 
 void	exec_pipe(int intfd, t_list *lst, t_list *head, char **env)
 {
 	t_var	var;
-
 	var.env = NULL;
 	if (ft_strcmp("cat", lst->cmd) != 0)
 		var.env = env;
@@ -89,7 +92,8 @@ void	exec_pipe(int intfd, t_list *lst, t_list *head, char **env)
 	if (!is_built_in(head) && var.cmd == NULL)
 		return (cmd_not_found(var.fd, lst, env));
 	g_info.sig = 1;
-	exec_cmd(lst, head, var, intfd);
+	if (exec_cmd(lst, head, var, intfd) == 0)
+		return ;
 	if (!is_built_in(head))
 		free(var.cmd);
 	close(var.io_fd[0]);
