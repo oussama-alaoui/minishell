@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oakoudad <oakoudad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oalaoui- <oalaoui-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:11:56 by oakoudad          #+#    #+#             */
-/*   Updated: 2022/09/17 01:30:11 by oakoudad         ###   ########.fr       */
+/*   Updated: 2022/10/06 19:32:27 by oalaoui-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	main(int ac, char **av, char **env)
 	while (1)
 	{
 		rl_catch_signals = 0;
-		buff = readline("\033[32;1mMinishell ➜ \033[0m");
+		buff = readline("\033[32;1m ➜ \033[0m");
 		if (buff == NULL)
 			return (ft_putstr_fd(1, "exit\n"), 0);
 		if (buff[0] == EOF)

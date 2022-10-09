@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_env_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelmoham <eelmoham@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oalaoui- <oalaoui-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 23:06:46 by oakoudad          #+#    #+#             */
-/*   Updated: 2022/09/17 23:35:17 by eelmoham         ###   ########.fr       */
+/*   Updated: 2022/10/07 17:43:23 by oalaoui-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ char	*join_env_value(char *value, char *key)
 	char	*oldvalue;
 	char	*newvalue;
 
-	oldvalue = get_env_var(key);
+	oldvalue = get_env_value(key);
 	if (oldvalue == NULL)
 		return (value);
-	oldvalue = ft_strdup(get_env_var(key));
+	oldvalue = ft_strdup(get_env_value(key));
 	newvalue = ft_strjoin(oldvalue, value);
 	myfree(value);
 	return (newvalue);

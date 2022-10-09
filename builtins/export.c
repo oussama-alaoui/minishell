@@ -6,7 +6,7 @@
 /*   By: oalaoui- <oalaoui-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 21:30:03 by oalaoui-          #+#    #+#             */
-/*   Updated: 2022/10/05 19:33:27 by oalaoui-         ###   ########.fr       */
+/*   Updated: 2022/10/07 17:37:32 by oalaoui-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,29 +47,30 @@ char *get_key(char *str, int status)
 	return (key);
 }
 
-int valid_key(char *str)
+int valid_key(char *str, int type)
 {
 	int i;
 
 	i = 0;
 	while (str[i])
 	{
-		if ((str[i] >= 'a' && str[i] <= 'z')
-			|| (str[i] >= 'A' && str[i] <= 'Z')
-			|| (str[i] == '_')
+		if ((str[i] >= 'a' && str[i] <= 'z')|| (str[i] >= 'A' && str[i] <= 'Z') || (str[i] == '_')
 			|| (str[i] >= '0' && str[i] <= '9' && i > 0))
 			i++;
 		else if (str[i] == '+' && str[i + 1] == '\0')
 			return (2);
 		else
-		{
-			ft_putstr_fd(2, "minishell: export: ");
+		{	
+			if (type)
+				ft_putstr_fd(2, "minishell: export: ");
+			else
+				ft_putstr_fd(2, "minishell: unset: ");
 			ft_putstr_fd(2, str);
 			ft_putstr_fd(2, ": not a valid identifier\n");
 			return (0);
 		}
 	}
-	return 1;
+	return (1);
 }
 
 char *get_value(char *str)
@@ -107,12 +108,14 @@ int init_env(char **var)
 	i = -1;        
 	while (var[++i])
 	{
-		if (valid_key(get_key(var[i], 0)))
+		if (valid_key(get_key(var[i], 0), 1))
 		{
 			key = get_key(var[i], 1);
 			val = get_value(var[i]);
-			if (create_list_env(key, val, valid_key(get_key(var[i], 0))) == 0)
+			if (create_list_env(key, val, valid_key(get_key(var[i], 0), 1)) == 0)
 				return (0);
+			free(key);
+			free(val);
 		}
 	}
 	return (1);

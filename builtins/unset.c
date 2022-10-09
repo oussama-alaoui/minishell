@@ -6,7 +6,7 @@
 /*   By: oalaoui- <oalaoui-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 22:00:13 by oalaoui-          #+#    #+#             */
-/*   Updated: 2022/10/04 22:53:57 by oalaoui-         ###   ########.fr       */
+/*   Updated: 2022/10/07 17:30:04 by oalaoui-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	ft_unset(char **args)
 	i = -1;
 	while (args[++i])
 	{
+		if (!valid_key(args[i], 0))
+			return ;
 		tmp = g_info.env_lst;
 		prev = NULL;
 		while (tmp)

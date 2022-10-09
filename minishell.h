@@ -6,7 +6,7 @@
 /*   By: oalaoui- <oalaoui-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:15:33 by oakoudad          #+#    #+#             */
-/*   Updated: 2022/10/05 21:20:55 by oalaoui-         ###   ########.fr       */
+/*   Updated: 2022/10/07 21:54:28 by oalaoui-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,8 @@ void		ft_pwd(void);
 char		*ft_strjoin(char *s1, char *s2);
 void		ft_unset(char **str);
 int			sort_list(void);
-void		built_in_exit(char **args);
-
+void		ft_exit(char **args);
+int 		valid_key(char *str, int type);
 
 void		parsing(char	**pips);
 int			len_var(char *s);
@@ -120,17 +120,16 @@ int			end_of_cmd(char *s);
 int			len_of_cmd(char *s, int to);
 void		fileopen(t_list	**l, char *outfile, char *token);
 int			is_valid_key(char c);
-char		*get_env_var(char *key);
 char		*get_cmd_from_path(char *cmd);
 char		**ft_split(char *s, char c);
 int			exec_cmd_sys(char *cmd, char **env, t_list *lst);
 char		**prepare_env(void);
 char		*ft_itoa(int n);
 char		*join_env_value(char *value, char *key);
-int			is_built_in(t_list *lst);
+int			check_builtin(t_list *lst);
 int			create_list(char *name, char *value);
 void		exec(t_list *lst);
-void		exc_built_ins(t_list *lst);
+void		exec_builtins(t_list *lst);
 void		check_key_null(char *str);
 char		*generate_name(void);
 void		get_var(char *s, int *d, int fd);
@@ -152,7 +151,7 @@ void		saveio(int fd[], int io_fd[]);
 void		restoreio(int io_fd[]);
 void		cmd_not_found(int fd[], t_list *lst, char **env);
 int			set_status(int type);
-void		dup_fd(int intfd, int fd[], t_list *lst, t_list *head);
+void		dup_fd(int intfd, int fd[], t_list *lst);
 int			ft_atoi(const char *str);
 void		prepare_name(char **names);
 int			len_key(char *str);
@@ -171,9 +170,10 @@ char		*get_pwd(void);
 int			isvarformat(char c);
 void		myfree(void *p);
 void		*ft_calloc(size_t size);
-void		exec_pipe(int intfd, t_list *lst, t_list *head, char **env);
+void		exec_cmd_pipe(int intfd, t_list *lst, char **env);
 int			if_no_cmd(t_list *head, char **env, t_var	var);
 int			export_error(char *str);
 int			check_key_unset(char *str);
+void		printf_error(char *cmd, char *message, char *status);
 
 #endif

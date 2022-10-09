@@ -6,7 +6,7 @@
 /*   By: oalaoui- <oalaoui-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 21:10:44 by oalaoui-          #+#    #+#             */
-/*   Updated: 2022/10/05 19:28:35 by oalaoui-         ###   ########.fr       */
+/*   Updated: 2022/10/06 17:33:59 by oalaoui-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void print_export_env()
 			{
 				ft_putstr_fd(1, "declare -x ");
 				ft_putstr_fd(1, tmp->key);
+				ft_putstr_fd(1, "\n");
 			}
 		}
 		tmp = tmp->next;

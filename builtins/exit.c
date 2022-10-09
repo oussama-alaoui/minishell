@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eelmoham <eelmoham@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oalaoui- <oalaoui-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 01:21:09 by eelmoham          #+#    #+#             */
-/*   Updated: 2022/09/16 04:32:07 by eelmoham         ###   ########.fr       */
+/*   Updated: 2022/10/07 20:07:59 by oalaoui-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	exit_check_args(char **args)
 	}
 }
 
-void	built_in_exit(char **args)
+void	ft_exit(char **args)
 {
 	unsigned char	i;
 

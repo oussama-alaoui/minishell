@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_var.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oakoudad <oakoudad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oalaoui- <oalaoui-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 18:14:09 by oakoudad          #+#    #+#             */
-/*   Updated: 2022/09/07 18:15:08 by oakoudad         ###   ########.fr       */
+/*   Updated: 2022/10/07 17:40:03 by oalaoui-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	get_var(char *s, int *d, int fd)
 		}
 		i++;
 	}
-	var = get_env_var(dup + 1);
+	var = get_env_value(dup + 1);
 	write(fd, var, ft_strlen(var));
 	if (var == NULL)
 		free(var);

@@ -6,7 +6,7 @@
 /*   By: oalaoui- <oalaoui-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 21:10:38 by oalaoui-          #+#    #+#             */
-/*   Updated: 2022/10/05 23:50:24 by oalaoui-         ###   ########.fr       */
+/*   Updated: 2022/10/06 19:01:23 by oalaoui-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void ft_cd(char *path)
 	create_list_env("?", "0", 1);
 	if (path == NULL)
 	{
-		if (ft_chdir(getenv("HOME")) == -1)
+		if (ft_chdir(get_env_value("HOME")) == -1) 
 			ft_putstr_fd(2, "cd: HOME not set\n");
 	}
 	else if (ft_strcmp(path, "-") == 0)

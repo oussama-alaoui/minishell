@@ -1,42 +1,7 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   check_cmd.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eelmoham <eelmoham@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/08 18:47:26 by oakoudad          #+#    #+#             */
-/*   Updated: 2022/09/17 23:35:04 by eelmoham         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	*get_env_var(char *key)
-{
-	t_list_env	*lst;
-
-	lst = g_info.env_lst;
-	while (lst)
-	{
-		if (ft_strcmp(lst->key, key) == 0)
-		{
-			return (lst->value);
-		}
-		lst = lst->next;
-	}
-	return (NULL);
-}
-
-void	printf_error(char *cmd, char *message, char *status)
-{
-	write(2, "minishell: ", 12);
-	write(2, cmd, ft_strlen(cmd));
-	write(2, message, ft_strlen(message));
-	create_list("?", status);
-}
-
-int	cmd_error(char *cmd)
+int	check_fille(char *cmd)
 {
 	if (access(cmd, X_OK) != 0)
 	{
@@ -62,11 +27,11 @@ char	*get_cmd_from_path(char *cmd)
 
 	if ((cmd[0] == '.' && cmd[1] == '/') || (cmd[0] == '/'))
 	{
-		if (cmd_error(cmd))
+		if (check_fille(cmd))
 			return (ft_strdup(cmd));
 		return (NULL);
 	}
-	path = get_env_var("PATH");
+	path = get_env_value("PATH");
 	if (path == NULL)
 		return (printf_error(cmd, ": command not found\n", "127"), NULL);
 	vals = ft_split(path, ':');

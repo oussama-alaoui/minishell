@@ -47,11 +47,11 @@ SRC = 		minishell.c\
 		./parsing/utils2.c\
 		./parsing/heredoc.c\
 		./parsing/free.c\
-		./execve/check_cmd.c\
-		./execve/built_in.c\
-		./execve/utils.c\
-		./execve/exec.c\
-		./execve/exec_pips_utils.c
+		./exection/prepared_cmd.c\
+		./exection/exec_builtins.c\
+		./exection/dup.c\
+		./exection/exec.c\
+		./exection/utile.c
 
 OBJ = $(SRC:.c=.o)
 
