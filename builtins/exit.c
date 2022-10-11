@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: oalaoui- <oalaoui-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/01 01:21:09 by eelmoham          #+#    #+#             */
-/*   Updated: 2022/10/07 20:07:59 by oalaoui-         ###   ########.fr       */
+/*   Created: 2022/09/01 01:21:09 by oalaoui-          #+#    #+#             */
+/*   Updated: 2022/10/10 03:46:13 by oalaoui-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	free_allenv(void)
 		free(env);
 		env = env->next;
 	}
-	free(g_info.names);
 	free_cmd_line(g_info.cmds);
 }
 
@@ -61,7 +60,7 @@ void	ft_exit(char **args)
 
 	ft_putstr_fd(1, "exit\n");
 	exit_check_args(args);
-	create_list("?", "1");
+	create_list_env("?", "1", 0);
 	if (args && args[0] && args[1])
 		return (ft_putstr_fd(2, "MiniShell: exit: too many arguments\n"));
 	i = 0;

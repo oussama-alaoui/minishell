@@ -17,7 +17,6 @@ SRC = 		minishell.c\
 		./src/split_pipes.c\
 		./src/check_syntax.c\
 		./src/remove_spaces.c\
-		./src/lst_env.c\
 		./src/lst_env_utils.c\
 		./src/numbers.c\
 		./src/if_file.c\
@@ -49,8 +48,8 @@ SRC = 		minishell.c\
 		./parsing/free.c\
 		./exection/prepared_cmd.c\
 		./exection/exec_builtins.c\
-		./exection/dup.c\
-		./exection/exec.c\
+		./exection/pipe_dup.c\
+		./exection/exec_sys.c\
 		./exection/utile.c
 
 OBJ = $(SRC:.c=.o)
@@ -77,3 +76,4 @@ fclean : clean
 
 re: fclean all
 .PHONY : clean fclean re all
+ /*-fsanitize=address*/ 

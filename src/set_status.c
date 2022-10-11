@@ -6,7 +6,7 @@
 /*   By: oalaoui- <oalaoui-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 22:45:22 by oakoudad          #+#    #+#             */
-/*   Updated: 2022/10/04 21:59:28 by oalaoui-         ###   ########.fr       */
+/*   Updated: 2022/10/10 02:47:25 by oalaoui-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ int	set_status(int type)
 		free(oldpwd[0]);
 		free(oldpwd);
 	}
-	create_list("?", "0");
-	if (sort_list() == 0)
-		return (0);
+	create_list_env("?", "0", 0);
 	return (type);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_error.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oakoudad <oakoudad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oalaoui- <oalaoui-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 18:21:04 by oakoudad          #+#    #+#             */
-/*   Updated: 2022/09/15 22:52:36 by oakoudad         ###   ########.fr       */
+/*   Updated: 2022/10/10 02:40:19 by oalaoui-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	unexpected(char token, char token2)
 	write(2, &token, 1);
 	write(2, &token2, 1);
 	write(2, "'\n", 2);
-	create_list("?", "258");
+	create_list_env("?", "258", 0);
 	return (0);
 }
 

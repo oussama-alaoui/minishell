@@ -6,7 +6,7 @@
 /*   By: oalaoui- <oalaoui-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:15:33 by oakoudad          #+#    #+#             */
-/*   Updated: 2022/10/07 21:54:28 by oalaoui-         ###   ########.fr       */
+/*   Updated: 2022/10/11 02:12:49 by oalaoui-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ typedef struct listenv
 
 typedef struct lisinfo
 {
-	char		**names;
 	int			sig;
 	int			count_pipes;
 	int			heredoc;
@@ -102,7 +101,6 @@ void		ft_cd(char *path);
 void		ft_pwd(void);
 char		*ft_strjoin(char *s1, char *s2);
 void		ft_unset(char **str);
-int			sort_list(void);
 void		ft_exit(char **args);
 int 		valid_key(char *str, int type);
 
@@ -127,8 +125,6 @@ char		**prepare_env(void);
 char		*ft_itoa(int n);
 char		*join_env_value(char *value, char *key);
 int			check_builtin(t_list *lst);
-int			create_list(char *name, char *value);
-void		exec(t_list *lst);
 void		exec_builtins(t_list *lst);
 void		check_key_null(char *str);
 char		*generate_name(void);
@@ -171,9 +167,19 @@ int			isvarformat(char c);
 void		myfree(void *p);
 void		*ft_calloc(size_t size);
 void		exec_cmd_pipe(int intfd, t_list *lst, char **env);
-int			if_no_cmd(t_list *head, char **env, t_var	var);
+int			if_no_cmd(t_list *head, t_var	var, char **env);
 int			export_error(char *str);
 int			check_key_unset(char *str);
+int			wait_and_error(int fd, t_list	*head);
 void		printf_error(char *cmd, char *message, char *status);
+void		exec_cmd(t_list *lst, t_var var, int intfd);
+void 		init_check(t_var var, t_list *lst);
+void		free_tableau_2d(char **str);
+int			key_len(char *str);
+int			init_env(char **var);
+t_list_env	*ft_lstenv_(char *key, char *value);
+int			check_plus_arg(char *str);
+void		exec(t_list *lst);
+
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oakoudad <oakoudad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oalaoui- <oalaoui-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 03:24:23 by oakoudad          #+#    #+#             */
-/*   Updated: 2022/09/15 22:52:36 by oakoudad         ###   ########.fr       */
+/*   Updated: 2022/10/10 02:39:01 by oalaoui-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	skip_quotes(char *s, int *d, int status)
 	if (s[i] == 0 && status)
 	{
 		ft_putstr_fd(2, "Minishell: syntax error quotes not closed\n");
-		create_list("?", "1");
+		create_list_env("?", "1", 0);
 		return (0);
 	}
 	*d = i;
@@ -94,7 +94,7 @@ int	skip_quotes2(char *s, int *d)
 	if (s[i] == 0)
 	{
 		ft_putstr_fd(2, "Minishell: syntax error quotes not closed\n");
-		create_list("?", "1");
+		create_list_env("?", "1", 0);
 		return (0);
 	}
 	*d = i;

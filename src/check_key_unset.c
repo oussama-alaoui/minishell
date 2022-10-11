@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_key_unset.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oakoudad <oakoudad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oalaoui- <oalaoui-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 22:48:17 by oakoudad          #+#    #+#             */
-/*   Updated: 2022/09/17 23:05:29 by oakoudad         ###   ########.fr       */
+/*   Updated: 2022/10/10 02:38:00 by oalaoui-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	unset_error(char *str)
 	write(2, "minishell: unset: `", 20);
 	write(2, str, ft_strlen(str));
 	write(2, "': not a valid identifier\n", 27);
-	create_list("?", "1");
+	create_list_env("?", "1", 0);
 	return (0);
 }
 

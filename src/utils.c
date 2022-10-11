@@ -6,7 +6,7 @@
 /*   By: oalaoui- <oalaoui-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 18:31:28 by oakoudad          #+#    #+#             */
-/*   Updated: 2022/10/06 00:02:56 by oalaoui-         ###   ########.fr       */
+/*   Updated: 2022/10/10 17:54:48 by oalaoui-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ char	*ft_strjoin(char *s1, char *s2)
 
 void	ft_putstr_fd(int fd, char *s)
 {
+
 	if (fd == 2)
 		create_list_env("?", "0", 0);
 	write(fd, s, ft_strlen(s));

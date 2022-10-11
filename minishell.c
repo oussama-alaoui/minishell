@@ -6,7 +6,7 @@
 /*   By: oalaoui- <oalaoui-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:11:56 by oakoudad          #+#    #+#             */
-/*   Updated: 2022/10/06 19:32:27 by oalaoui-         ###   ########.fr       */
+/*   Updated: 2022/10/10 20:09:43 by oalaoui-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,35 +61,36 @@ void	config(char **e, int ac, char **av)
 		}
 	}
 	if (!search_var("SHLVL", e))
-		create_list("SHLVL", "1");
+		create_list_env("SHLVL", "1", 1);
 	if (!search_var("PATH", e))
-		create_list("PATH", "/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.");
+		create_list_env("PATH", "/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.", 1);
 }
 
 int	main(int ac, char **av, char **env)
 {
-	char		*buff;
+	char		*txt;
 
 	config(env, ac, av);
-	if (split_equal(env, 1) == 0)
+	if (init_env(env) == 0)
 		return (0);
 	signal(SIGINT, sighandler);
 	signal(SIGQUIT, SIG_IGN);
 	while (1)
 	{
 		rl_catch_signals = 0;
-		buff = readline("\033[32;1m ➜ \033[0m");
-		if (buff == NULL)
+		txt = readline("Minishell$ ");
+		if (txt == NULL)
 			return (ft_putstr_fd(1, "exit\n"), 0);
-		if (buff[0] == EOF)
+		if (txt[0] == EOF)
 		{
-			free(buff);
+			free(txt);
 			continue ;
 		}
-		add_history(buff);
-		if (check_syntax(buff) == -1)
+		add_history(txt);
+		if (check_syntax(txt) == -1)
 			return (0);
-		free(buff);
-		buff = NULL;
+		free(txt);
+		txt = NULL;
 	}
+	while(1){}
 }

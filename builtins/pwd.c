@@ -6,7 +6,7 @@
 /*   By: oalaoui- <oalaoui-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 22:04:04 by oalaoui-          #+#    #+#             */
-/*   Updated: 2022/10/06 18:53:35 by oalaoui-         ###   ########.fr       */
+/*   Updated: 2022/10/10 22:13:55 by oalaoui-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	ft_pwd(void)
 	{
 		ft_putstr_fd(1, pwd);
 		ft_putstr_fd(1, "\n");
+		free(pwd);
 	}
 	else
 	{
