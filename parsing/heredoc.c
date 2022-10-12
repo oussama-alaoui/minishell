@@ -20,7 +20,7 @@ void	heredoc_promes(t_list **l, char *buff, char *file)
 	buff = readline("> ");
 	if (buff == NULL || ft_strcmp(buff, file) == 0)
 	{
-		g_info.heredoc_fd = 0;
+		g_var.heredoc_fd = 0;
 		return ;
 	}
 	i = 0;
@@ -39,8 +39,8 @@ void	heredoc_promes(t_list **l, char *buff, char *file)
 
 void	init_heredoc(int a, int b)
 {
-	g_info.sig = a;
-	g_info.heredoc = b;
+	g_var.sig = a;
+	g_var.heredoc = b;
 }
 
 void	heredoc_wait(int pid)
@@ -71,9 +71,9 @@ void	heredoc(t_list **l, char *file)
 	if (pid == 0)
 	{
 		(*l)->in_fd = open((*l)->heredoc_file, O_CREAT | O_RDWR, 0666);
-		g_info.heredoc = 1;
-		g_info.heredoc_fd = (*l)->in_fd;
-		while (g_info.heredoc_fd)
+		g_var.heredoc = 1;
+		g_var.heredoc_fd = (*l)->in_fd;
+		while (g_var.heredoc_fd)
 			heredoc_promes(l, buff, file);
 		close((*l)->in_fd);
 		exit(0);

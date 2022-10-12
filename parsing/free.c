@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oakoudad <oakoudad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oalaoui- <oalaoui-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 21:46:49 by oakoudad          #+#    #+#             */
-/*   Updated: 2022/09/17 23:06:48 by oakoudad         ###   ########.fr       */
+/*   Updated: 2022/10/11 22:29:32 by oalaoui-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	myfree(void *p)
 
 void	free_cmd_line(t_list	*head)
 {
-	int	i;
+	int		i;
+	t_list	*tmp;
 
 	while (head)
 	{
@@ -40,7 +41,8 @@ void	free_cmd_line(t_list	*head)
 		}
 		myfree(head->allargs);
 		myfree(head->args);
-		free(head);
+		tmp = head;
 		head = head->next;
+		free(tmp);
 	}
 }

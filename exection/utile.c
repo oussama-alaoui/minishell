@@ -6,7 +6,7 @@
 /*   By: oalaoui- <oalaoui-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 21:44:56 by oalaoui-          #+#    #+#             */
-/*   Updated: 2022/10/11 00:21:20 by oalaoui-         ###   ########.fr       */
+/*   Updated: 2022/10/12 03:11:04 by oalaoui-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,15 @@ void	cmd_not_found(int fd[], t_list *lst, char **env)
 {
 	(void)lst;
 	close(fd[1]);
-	g_info.sig = 1;
+	g_var.sig = 1;
 	if (lst->next)
 		exec_cmd_pipe(fd[0], lst->next, env);
 }
 
-int	if_no_cmd(t_list *head, t_var var, char **env)
+int	if_no_cmd(t_list *head, t_execvar var, char **env)
 {
+	if (head == NULL)
+		return (1);
 	if (head->cmd == NULL || head->cmd[0] == '\0')
 	{
 		close(head->in_fd);
@@ -63,24 +65,24 @@ int	wait_and_error(int fd, t_list	*head)
 
 	z = 0;
 	close(fd);
-	while (z < g_info.count_pipes && g_info.count_pipes)
+	while (z < g_var.count_pipes && g_var.count_pipes)
 	{
 		wait(&status);
 		if (WIFEXITED(status) && z == 0)
 		{
-			g_info.errorstatus = WEXITSTATUS(status);
+			g_var.errorstatus = WEXITSTATUS(status);
 			if (head->error == 0)
-				change_status(g_info.errorstatus);
+				change_status(g_var.errorstatus);
 		}
 		if (WIFSIGNALED(status) && z == 0)
 		{
-			g_info.errorstatus = WTERMSIG(status) + 128;
-			if (g_info.errorstatus == 131)
+			g_var.errorstatus = WTERMSIG(status) + 128;
+			if (g_var.errorstatus == 131)
 				write(2, "Quit: 3\n", 8);
-			change_status(g_info.errorstatus);
+			change_status(g_var.errorstatus);
 		}
 		z++;
 	}
-	g_info.sig = 1;
+	g_var.sig = 1;
 	return (1);
 }

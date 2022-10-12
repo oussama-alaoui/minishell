@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oakoudad <oakoudad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oalaoui- <oalaoui-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 19:08:45 by oakoudad          #+#    #+#             */
-/*   Updated: 2022/09/17 01:52:44 by oakoudad         ###   ########.fr       */
+/*   Updated: 2022/10/11 21:20:48 by oalaoui-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	isvarformat(char c)
 {
-	if (c == '\'' || c == '"' | c == '_' || c == '?' || (c >= 'a' && c <= 'z')
+	if (c == '\'' || c == '"' || c == '_' || c == '?' || (c >= 'a' && c <= 'z')
 		|| (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9'))
 		return (1);
 	return (0);
@@ -46,7 +46,7 @@ char	*create_var(char *s, int len)
 	char	*var;
 
 	i = -1;
-	var = ft_calloc(sizeof(char) * len);
+	var = ft_calloc(sizeof(char) * (len + 1));
 	while (++i < len)
 		var[i] = s[i];
 	var[i] = '\0';

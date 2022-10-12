@@ -23,7 +23,7 @@ void	free_allenv(void)
 {
 	t_list_env	*env;
 
-	env = g_info.env_lst;
+	env = g_var.env_lst;
 	while (env)
 	{
 		free(env->key);
@@ -31,7 +31,7 @@ void	free_allenv(void)
 		free(env);
 		env = env->next;
 	}
-	free_cmd_line(g_info.cmds);
+	free_cmd_line(g_var.cmds);
 }
 
 void	exit_check_args(char **args)

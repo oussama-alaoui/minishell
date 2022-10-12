@@ -6,7 +6,7 @@
 /*   By: oalaoui- <oalaoui-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 03:14:13 by oakoudad          #+#    #+#             */
-/*   Updated: 2022/10/10 19:23:37 by oalaoui-         ###   ########.fr       */
+/*   Updated: 2022/10/11 21:13:48 by oalaoui-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ char	**get_args(char *s, t_list **l)
 
 	(*l)->words = 1;
 	count_args(s, l);
-	args = ft_calloc(sizeof(char *) * (*l)->words + 1);
+	args = ft_calloc(sizeof(char *) * ((*l)->words + 1));
 	i = 0;
 	d = 0;
 	status = 1;
@@ -128,7 +128,7 @@ void	parsing(char	**pips)
 
 	i = -1;
 	head = NULL;
-	while (pips[++i] != NULL && i < g_info.count_pipes)
+	while (pips[++i] != NULL && i < g_var.count_pipes)
 	{
 		node = ft_calloc(sizeof(t_list));
 		node->args = NULL;
@@ -142,7 +142,7 @@ void	parsing(char	**pips)
 	}
 	free(pips);
 	tmp->next = NULL;
-	g_info.cmds = head;
+	g_var.cmds = head;
 	exec(head);
 	free_cmd_line(head);
 }

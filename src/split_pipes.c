@@ -97,7 +97,7 @@ char	**split_pipes(char *s)
 			count++;
 		i++;
 	}
-	g_info.count_pipes = count + 1;
+	g_var.count_pipes = count + 1;
 	p = ft_calloc(sizeof(char *) * (count + 2));
 	if (!p || !split_pipes2(s, p, count + 1))
 		return (NULL);

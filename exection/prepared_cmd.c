@@ -6,7 +6,7 @@
 /*   By: oalaoui- <oalaoui-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 21:44:50 by oalaoui-          #+#    #+#             */
-/*   Updated: 2022/10/10 03:31:44 by oalaoui-         ###   ########.fr       */
+/*   Updated: 2022/10/11 21:14:48 by oalaoui-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,12 @@ char	**prepare_env(void)
 	t_list_env	*lst;
 	char		**newenv;
 
-	lst = g_info.env_lst;
+	lst = g_var.env_lst;
 	i = ft_lstsize(lst);
-	newenv = ft_calloc(sizeof(char *) * i + 1);
+	newenv = ft_calloc(sizeof(char *) * (i + 1));
 	if (!newenv)
 		return (NULL);
-	lst = g_info.env_lst;
+	lst = g_var.env_lst;
 	i = -1;
 	while (++i >= 0 && lst)
 	{

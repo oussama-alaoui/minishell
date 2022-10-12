@@ -6,7 +6,7 @@
 /*   By: oalaoui- <oalaoui-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:15:33 by oakoudad          #+#    #+#             */
-/*   Updated: 2022/10/11 02:12:49 by oalaoui-         ###   ########.fr       */
+/*   Updated: 2022/10/11 23:09:39 by oalaoui-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef struct lisinfo
 	int			errorstatus;
 	t_list_env	*env_lst;
 	t_list		*cmds;
-}	t_info;
+}	t_var;
 
 typedef struct execvar
 {
@@ -72,9 +72,9 @@ typedef struct execvar
 	int		fd[2];
 	int		io_fd[2];
 	char	**env;
-}	t_var;
+}	t_execvar;
 
-t_info	g_info;
+t_var	g_var;
 
 int			ft_lstsize(t_list_env *lst);
 int			is_space(char c);
@@ -102,7 +102,7 @@ void		ft_pwd(void);
 char		*ft_strjoin(char *s1, char *s2);
 void		ft_unset(char **str);
 void		ft_exit(char **args);
-int 		valid_key(char *str, int type);
+int			valid_key(char *str, int type);
 
 void		parsing(char	**pips);
 int			len_var(char *s);
@@ -160,26 +160,25 @@ int			search_var(char *var, char **env);
 void		free_env(char *var);
 void		free_splited(char **vals, int i);
 void		heredoc(t_list **l, char *file);
-void		change_status(int status);
+void		_status(int status);
 void		free_cmd_line(t_list *head);
 char		*get_pwd(void);
 int			isvarformat(char c);
 void		myfree(void *p);
 void		*ft_calloc(size_t size);
 void		exec_cmd_pipe(int intfd, t_list *lst, char **env);
-int			if_no_cmd(t_list *head, t_var	var, char **env);
+int			if_no_cmd(t_list *head, t_execvar var, char **env);
 int			export_error(char *str);
 int			check_key_unset(char *str);
 int			wait_and_error(int fd, t_list	*head);
 void		printf_error(char *cmd, char *message, char *status);
-void		exec_cmd(t_list *lst, t_var var, int intfd);
-void 		init_check(t_var var, t_list *lst);
-void		free_tableau_2d(char **str);
+void		exec_cmd(t_list *lst, t_execvar var, int intfd);
+void		init_check(t_var var, t_list *lst);
 int			key_len(char *str);
 int			init_env(char **var);
 t_list_env	*ft_lstenv_(char *key, char *value);
 int			check_plus_arg(char *str);
 void		exec(t_list *lst);
-
+void		change_status(int status);
 
 #endif

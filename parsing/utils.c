@@ -6,7 +6,7 @@
 /*   By: oalaoui- <oalaoui-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 03:24:23 by oakoudad          #+#    #+#             */
-/*   Updated: 2022/10/10 02:39:01 by oalaoui-         ###   ########.fr       */
+/*   Updated: 2022/10/11 21:18:17 by oalaoui-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ int	len_var(char *s)
 
 	i = -1;
 	j = 0;
-	temp = g_info.env_lst;
+	temp = g_var.env_lst;
 	while ((s[j] >= 'a' && s[j] <= 'z') || (s[j] >= 'A' && s[j] <= 'Z')
 		|| s[j] == '_'
 		|| (s[j] >= '0' && s[j] <= '9'))
 		j++;
-	var = ft_calloc(sizeof(char) * j);
+	var = ft_calloc(sizeof(char) * (j + 1));
 	while (++i < j)
 		var[i] = s[i];
 	var[i] = '\0';

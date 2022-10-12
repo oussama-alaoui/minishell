@@ -26,7 +26,7 @@ void	ft_pwd(void)
 	char		*pwd;
 	t_list_env	*tmp;
 
-	tmp = g_info.env_lst;
+	tmp = g_var.env_lst;
 	pwd = get_current_dir();
 	if (pwd)
 	{

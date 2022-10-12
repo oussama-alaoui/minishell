@@ -6,7 +6,7 @@
 /*   By: oalaoui- <oalaoui-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 22:00:13 by oalaoui-          #+#    #+#             */
-/*   Updated: 2022/10/09 21:51:26 by oalaoui-         ###   ########.fr       */
+/*   Updated: 2022/10/11 21:43:06 by oalaoui-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@ void	ft_lstremove(t_list_env *to_remove)
 {
 	t_list_env	*tmp;
 
-	if (g_info.env_lst == to_remove)
+	if (g_var.env_lst == to_remove)
 	{
-		g_info.env_lst = to_remove->next;
+		g_var.env_lst = to_remove->next;
 		free(to_remove->key);
 		free(to_remove->value);
 		free(to_remove);
 		return ;
 	}
-	tmp = g_info.env_lst;
+	tmp = g_var.env_lst;
 	while (tmp->next != to_remove)
 		tmp = tmp->next;
 	tmp->next = to_remove->next;
@@ -43,7 +43,7 @@ void	ft_unset(char **args)
 	{
 		if (!valid_key(args[i], 0))
 			return ;
-		tmp = g_info.env_lst;
+		tmp = g_var.env_lst;
 		while (tmp)
 		{
 			if (ft_strcmp(args[i], tmp->key) == 0)

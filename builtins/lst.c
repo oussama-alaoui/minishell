@@ -16,7 +16,7 @@ int	create_list_env(char *key, char *value, int status)
 {
 	t_list_env	*tmp;
 
-	tmp = g_info.env_lst;
+	tmp = g_var.env_lst;
 	while (tmp)
 	{
 		if (ft_strcmp(tmp->key, key) == 0)
@@ -61,10 +61,10 @@ void	ft_envadd_back_(t_list_env *new)
 {
 	t_list_env	*t;
 
-	t = g_info.env_lst;
+	t = g_var.env_lst;
 	if (t == NULL)
 	{
-		g_info.env_lst = new;
+		g_var.env_lst = new;
 		return ;
 	}
 	while (t->next)

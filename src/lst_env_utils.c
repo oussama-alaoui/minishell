@@ -64,10 +64,10 @@ void	ft_envadd_back(t_list_env *new)
 {
 	t_list_env	*t;
 
-	t = g_info.env_lst;
+	t = g_var.env_lst;
 	if (t == NULL)
 	{
-		g_info.env_lst = new;
+		g_var.env_lst = new;
 		return ;
 	}
 	while (t->next)

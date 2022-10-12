@@ -2,7 +2,7 @@ NAME = minishell
 
 INC = minishell.h
 
-READLINE = $(shell brew --prefix readline)
+READLINE = /Users/oalaoui-/.brew/opt/readline
 
 INCLUDE_READLINE = $(addprefix $(READLINE),/include)
 
@@ -59,14 +59,14 @@ COLOUR_YELLOW=\033[0;33m
 COLOUR_BLUE=\033[0;34m
 COLOUR_END=\033[0m
 
-%.o : %.c
+%.o : %.c $(INC)
 	@echo "Create $(COLOUR_BLUE)$@$(COLOUR_END) from $(COLOUR_YELLOW)$<$(COLOUR_END)"
 	@$(CC) -I $(INCLUDE_READLINE) -c $< -o $@
 
 all : $(NAME)
 
 $(NAME) : $(INC)  $(OBJ)
-	@$(CC)  -I $(INCLUDE_READLINE) -L $(LIB_READLINE) -lreadline $(OBJ) -o $(NAME)
+	$(CC) $(OBJ) -o $(NAME) -I $(INCLUDE_READLINE) -L $(LIB_READLINE) -lreadline
 	@echo "$(COLOUR_GREEN)Executable created (./${NAME})$(COLOUR_END)"
 
 clean:

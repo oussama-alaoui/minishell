@@ -6,7 +6,7 @@
 /*   By: oalaoui- <oalaoui-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 21:30:03 by oalaoui-          #+#    #+#             */
-/*   Updated: 2022/10/11 02:12:15 by oalaoui-         ###   ########.fr       */
+/*   Updated: 2022/10/11 22:30:28 by oalaoui-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ char	*get_key(char *str)
 
 int	valid_key(char *str, int type)
 {
-	int	i;
+	int		i;
+	char	*tmp;
 
 	i = 0;
 	while (str[i])
@@ -52,9 +53,10 @@ int	valid_key(char *str, int type)
 				ft_putstr_fd(2, "minishell: export: ");
 			else
 				ft_putstr_fd(2, "minishell: unset: ");
-			ft_putstr_fd(2, ft_strdup(str));
-			ft_putstr_fd(2, ": not a valid identifier\n");
-			return (0);
+			tmp = ft_strdup(str);
+			ft_putstr_fd(2, tmp);
+			free(tmp);
+			return (ft_putstr_fd(2, ": not a valid identifier\n"), 0);
 		}
 	}
 	return (1);

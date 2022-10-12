@@ -6,7 +6,7 @@
 /*   By: oalaoui- <oalaoui-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 21:44:37 by oalaoui-          #+#    #+#             */
-/*   Updated: 2022/10/11 00:21:58 by oalaoui-         ###   ########.fr       */
+/*   Updated: 2022/10/12 00:12:34 by oalaoui-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,11 @@ void	dup_fd(int intfd, int fd[], t_list *lst)
 
 void	exec_cmd_pipe(int intfd, t_list *lst, char **env)
 {
-	t_var	var;
+	t_execvar	var;
 
-	var.env = NULL;
-	if (ft_strcmp("cat", lst->cmd) != 0)
-		var.env = env;
+	var.env = env;
 	var.pid = 0;
-	if (lst == NULL || if_no_cmd(lst, var, env))
+	if (if_no_cmd(lst, var, env))
 		return ;
 	saveio(var.fd, var.io_fd);
 	if (lst->next)
@@ -81,7 +79,6 @@ void	exec_cmd_pipe(int intfd, t_list *lst, char **env)
 		var.cmd = get_cmd_from_path(lst->cmd);
 	if (!check_builtin(lst) && var.cmd == NULL)
 		return (cmd_not_found(var.fd, lst, env));
-	g_info.sig = 1;
 	exec_cmd(lst, var, intfd);
 	if (!check_builtin(lst))
 		free(var.cmd);
@@ -90,23 +87,4 @@ void	exec_cmd_pipe(int intfd, t_list *lst, char **env)
 	if (!lst->next && wait_and_error(var.fd[0], lst))
 		return ;
 	exec_cmd_pipe(var.fd[0], lst->next, env);
-}
-
-void	exec(t_list *lst)
-{
-	char	**env;
-	int		i;
-
-	env = prepare_env();
-	exec_cmd_pipe(-1, lst, env);
-	i = 0;
-	if (env)
-	{
-		while (env[i])
-		{
-			myfree(env[i]);
-			i++;
-		}
-		myfree(env);
-	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   copy_var.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oakoudad <oakoudad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oalaoui- <oalaoui-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 18:19:19 by oakoudad          #+#    #+#             */
-/*   Updated: 2022/09/14 20:14:14 by oakoudad         ###   ########.fr       */
+/*   Updated: 2022/10/11 21:23:26 by oalaoui-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,15 @@ void	copy_var_2(int *d, char *var, char *dest)
 	int			i;
 	int			j;
 
-	temp = g_info.env_lst;
+	temp = g_var.env_lst;
 	i = (*d);
 	j = -1;
 	while (temp)
 	{
 		if (ft_strcmp(temp->key, var) == 0)
 		{
+			if (temp->value == NULL)
+				break ;
 			while (temp->value[++j])
 				dest[i++] = temp->value[j];
 		}

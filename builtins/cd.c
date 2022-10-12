@@ -16,7 +16,7 @@ char	*get_env_value(char *key)
 {
 	t_list_env	*tmp;
 
-	tmp = g_info.env_lst;
+	tmp = g_var.env_lst;
 	while (tmp)
 	{
 		if (ft_strcmp(tmp->key, key) == 0)

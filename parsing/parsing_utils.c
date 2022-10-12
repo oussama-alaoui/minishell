@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oakoudad <oakoudad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oalaoui- <oalaoui-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 18:18:32 by oakoudad          #+#    #+#             */
-/*   Updated: 2022/09/15 22:52:36 by oakoudad         ###   ########.fr       */
+/*   Updated: 2022/10/11 21:14:19 by oalaoui-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ char	**args_filter(t_list	**l)
 	i = elm->words;
 	if (elm->count_token != 0)
 		i -= 2 * elm->count_token;
-	args = ft_calloc(sizeof(char *) * i + 1);
+	args = ft_calloc(sizeof(char *) * (i + 1));
 	i = -1;
 	j = 0;
 	while (elm->allargs[++i])
